@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>All_Books</title>
+</head>
+<body>
+<h1>All books</h1>
+{% for book in books %}
+    <div>
+    <h2>{{ book.title }}</h2>
+     <p>Author: {{ book.author }}</p>
+        <p>Price: {{ book.price }}</p>
+        <p>Stock: {{ book.stock }}</p>
+        <p>{{ book.description }}</p>
+    </div>
+    {% empty %}
+    <p>Книг пока нет.</p>
+{% endfor %}
+
+</body>
+</html>
