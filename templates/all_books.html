@@ -1,25 +1,106 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All_Books</title>
-</head>
-<body>
-<h1>All books</h1>
-{% for book in books %}
-    <div>
-    <h2>{{ book.title }}</h2>
-     <p>Author: {{ book.author }}</p>
-        <p>Price: {{ book.price }}</p>
-        <p>Stock: {{ book.stock }}</p>
-        <p>{{ book.description }}</p>
-    </div>
-    {% empty %}
-    <p>Книг пока нет.</p>
-{% endfor %}
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}Все книги{% endblock %}
+
+{% block content %}
+
+<main class="container books-page">
+
+    <div class="books-page-title">
+        <h1>Все книги</h1>
+        <p>Здесь собраны книги из твоего магазина.</p>
+    </div>
+
+    <div class="row">
+        {% for book in books %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="book-card h-100">
+
+                    <div class="book-card-icon">
+                        📖
+                    </div>
+
+                    <div class="book-card-body">
+                        <h5 class="book-title">
+                            <a href="{% url 'books:book_detail' book.pk %}">
+                                {{ book.title }}
+                            </a>
+                        </h5>
+
+                        <p class="book-author">
+                            Автор: {{ book.author }}
+                        </p>
+
+                        <p class="book-description">
+                            {{ book.description }}
+                        </p>
+
+                        <div class="book-info">
+                            <span class="book-price">
+                                {{ book.price }} грн
+                            </span>
+
+                            <span class="book-stock">
+                                В наличии: {{ book.stock }}
+                            </span>
+                        </div>
+
+                        <a href="{% url 'books:book_detail' book.pk %}" class="btn book-btn mt-3">
+                            Подробнее
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="empty-books">
+                    Книг пока нет.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <div style="margin-top: 35px; display: flex; justify-content: center; align-items: center; gap: 16px;">
+
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"
+               style="background: #7b4b2a; color: white; padding: 10px 20px; border-radius: 24px; text-decoration: none; font-weight: 800;">
+                ← Назад
+            </a>
+        {% endif %}
+
+        <span style="background: rgba(255, 248, 238, 0.9); color: #2f1b12; padding: 10px 18px; border-radius: 24px; font-weight: 800;">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"
+               style="background: #7b4b2a; color: white; padding: 10px 20px; border-radius: 24px; text-decoration: none; font-weight: 800;">
+                Вперёд →
+            </a>
+        {% endif %}
+
+    </div>
+{% endif %}
+</main>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

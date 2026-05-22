@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
+    'users.apps.UsersConfig',
 
 ]
 
@@ -118,3 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+LOGIN_REDIRECT_URL = "books:home_page"
+LOGOUT_REDIRECT_URL = "books:home_page"
+LOGIN_URL = "users:login"

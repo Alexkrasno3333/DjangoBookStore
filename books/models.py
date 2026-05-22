@@ -23,4 +23,14 @@ class Book(models.Model):
 
 
 
+class BookSuggestion(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    book_title = models.CharField(max_length=200)
+    author = models.CharField(max_length=150, blank=True)
+    message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.book_title
 

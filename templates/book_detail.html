@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block tittle %}Book detail{% endblock %}
+
+{% block content %}
+<main class="container book-detail-page">
+
+    <a href="{% url 'books:all_books' %}" class="back-link">
+        ← Вернуться ко всем книгам
+    </a>
+
+    <section class="book-detail-card">
+
+        <div class="book-detail-left">
+            <div class="book-detail-cover">
+                📖
+            </div>
+
+            <span class="book-detail-badge">
+                Книга магазина
+            </span>
+        </div>
+
+        <div class="book-detail-content">
+
+            <div class="book-detail-top">
+                <span class="book-detail-label">Подробная информация</span>
+                <h1>{{ book.title }}</h1>
+            </div>
+
+            <p class="book-detail-author">
+                Автор:
+                <strong>{{ book.author }}</strong>
+            </p>
+
+            <div class="book-detail-meta">
+                <span class="detail-price">
+                    {{ book.price }} грн
+                </span>
+
+                <span class="detail-stock">
+                    В наличии: {{ book.stock }}
+                </span>
+            </div>
+
+            <hr class="book-detail-line">
+
+            <div class="book-detail-description">
+                <h4>Описание</h4>
+                <p>{{ book.description }}</p>
+            </div>
+
+            {% if book.category %}
+                <div class="book-detail-category">
+                    <strong>Категория:</strong>
+                    <span>{{ book.category.name }}</span>
+                </div>
+            {% endif %}
+
+            <div class="book-detail-actions">
+                <a href="{% url 'books:all_books' %}" class="btn detail-btn-secondary">
+                    ← Назад
+                </a>
+
+                <a href="{% url 'books:book_update' book.id %}" class="btn detail-btn-warning">
+                    ✏️ Редактировать
+                </a>
+
+                <a href="{% url 'books:book_confirm_delete' book.id %}" class="btn detail-btn-danger">
+                    🗑️ Удалить
+                </a>
+
+                <a href="#" class="btn detail-btn-primary">
+                    Купить / заказать
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+
+

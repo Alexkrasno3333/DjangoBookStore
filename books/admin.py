@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category,Book
+from .models import Category,Book,BookSuggestion
 
 class BookInline(admin.TabularInline):
     model = Book
@@ -20,4 +20,8 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ["category", "author"]
 
 
+@admin.register(BookSuggestion)
+class BookSuggestionAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "book_title", "author", "created_at"]
+    search_fields = ["name", "email", "book_title", "author"]
 # Register your models here.

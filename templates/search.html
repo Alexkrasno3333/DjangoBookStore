@@ -1,25 +1,94 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search</title>
-</head>
-<body>
-<form>
-    {% csrf_token %}
-{{ search_form.as_p }}
-    <button type="submit">Search</button>
-</form>
-{% for book in books %}
-    <h2>{{ book.title }}</h2>
-    <p>{{ book.author }}</p>
-{% empty %}
-    <p>Ничего не найдено.</p>
-{% endfor %}
+{% extends "base.html" %}
 
+{% block tittle %} Search block{% endblock %}
+{% block content %}
+<main class="container search-page">
 
-</body>
-</html>
+    <div class="search-title">
+        <span class="search-label">Поиск</span>
+
+        {% if request.GET.query %}
+            <h1>Результаты по запросу "{{ request.GET.query }}"</h1>
+        {% else %}
+            <h1>Поиск книг</h1>
+        {% endif %}
+
+        <p>Ищи книги по названию или автору.</p>
+    </div>
+
+    <form method="get" class="search-page-form">
+        <div class="input-group input-group-lg">
+            {{ search_form.query }}
+            <button class="btn search-page-btn" type="submit">
+                Найти
+            </button>
+        </div>
+    </form>
+
+    <div class="row mt-5">
+        {% for book in books %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="book-card h-100">
+
+                    <div class="book-card-icon">
+                        📖
+                    </div>
+
+                    <div class="book-card-body">
+                        <h5 class="book-title">
+                            <a href="{% url 'books:book_detail' book.id %}">
+                                {{ book.title }}
+                            </a>
+                        </h5>
+
+                        <p class="book-author">
+                            Автор: {{ book.author }}
+                        </p>
+
+                        {% if book.category %}
+                            <p class="search-category">
+                                {{ book.category.name }}
+                            </p>
+                        {% endif %}
+
+                        <div class="book-info">
+                            <span class="book-price">
+                                {{ book.price }} грн
+                            </span>
+
+                            <span class="book-stock">
+                                В наличии: {{ book.stock }}
+                            </span>
+                        </div>
+
+                        <a href="{% url 'books:book_detail' book.id %}" class="btn book-btn mt-3">
+                            Подробнее
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="search-empty">
+                    <div class="search-empty-icon">🔍</div>
+
+                    {% if request.GET.query %}
+                        <h3>Ничего не найдено</h3>
+                        <p>По запросу "{{ request.GET.query }}" книг пока нет.</p>
+                    {% else %}
+                        <h3>Введите запрос</h3>
+                        <p>Напиши название книги или автора в поле поиска.</p>
+                    {% endif %}
+
+                    <a href="{% url 'books:all_books' %}" class="btn book-btn">
+                        Смотреть все книги
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+
+{% endblock %}

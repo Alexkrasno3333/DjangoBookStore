@@ -1,23 +1,55 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Category</title>
-</head>
-<body>
-<h1>Category of Books</h1>
+{% extends "base.html" %}
 
-{% for i in categories %}
-    <a href="{% url 'books_by_category' i.slug %}">
-        {{ i.name }} - книг {{ i.num_books }}
-    </a>
+{% block tittle %}Category {% endblock %}
+{% block content %}
+<main class="container categories-page">
 
-{% empty %}
-    <p>Категорий пока нет.</p>
-{% endfor %}
+    <div class="categories-title">
+        <h1>Категории книг</h1>
+        <p>Выбери категорию и посмотри книги, которые к ней относятся.</p>
+    </div>
 
-</body>
-</html>
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{% url 'books:books_by_category' category.slug %}" class="category-card">
+
+                    <div class="category-icon">
+                        {% if category.name == "Fantasy" %}
+                            🧙‍♂️
+                        {% elif category.name == "Games" %}
+                            🎮
+                        {% elif category.name == "History" %}
+                            🏛️
+                        {% elif category.name == "Programming" %}
+                            💻
+                        {% else %}
+                            📚
+                        {% endif %}
+                    </div>
+
+                    <h3>{{ category.name }}</h3>
+
+                    <p>
+                        Книг в категории:
+                        <strong>{{ category.num_books }}</strong>
+                    </p>
+
+                    <span class="category-btn">
+                        Смотреть книги
+                    </span>
+
+                </a>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="empty-books">
+                    Категорий пока нет.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</main>
+
+{% endblock %}

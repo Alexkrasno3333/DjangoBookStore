@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block tittle %}Book update {% endblock %}
+
+{% block content %}
+<main class="container update-book-page">
+
+    <div class="update-book-wrapper">
+
+        <div class="update-book-info">
+            <span class="update-book-label">Редактирование</span>
+
+            <h1>Изменить книгу</h1>
+
+            <p>
+                Здесь можно обновить данные книги: название, автора, цену,
+                количество на складе и описание.
+            </p>
+
+            <div class="update-book-hint">
+                <div class="hint-icon">💡</div>
+                <p>
+                    После сохранения изменения попадут в базу данных и будут видны
+                    на странице всех книг.
+                </p>
+            </div>
+        </div>
+
+        <div class="update-book-card">
+            <div class="update-book-card-header">
+                <div class="update-book-icon">✏️</div>
+
+                <div>
+                    <h2>Форма книги</h2>
+                    <p>Отредактируй нужные поля и нажми “Сохранить”.</p>
+                </div>
+            </div>
+
+            <form method="post" class="update-book-form">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="update-book-field">
+                        <label class="form-label" for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <div class="update-book-help">
+                                {{ field.help_text }}
+                            </div>
+                        {% endif %}
+
+                        {% if field.errors %}
+                            <div class="update-book-error">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="update-book-actions">
+                    <button type="submit" class="btn update-book-submit-btn">
+                        💾 Сохранить изменения
+                    </button>
+
+                    {% if object %}
+                        <a href="{% url 'books:book_detail' object.id %}" class="btn update-book-cancel-btn">
+                            Отмена
+                        </a>
+                    {% else %}
+                        <a href="{% url 'books:all_books' %}" class="btn update-book-cancel-btn">
+                            Отмена
+                        </a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}
+
+
+
