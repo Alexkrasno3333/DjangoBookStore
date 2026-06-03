@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
@@ -73,25 +74,28 @@ class SearchBooksView(ListView):
         return context
 
 
-class BookSuggestionCreate(CreateView):
+class BookSuggestionCreate(LoginRequiredMixin,CreateView):
     model = BookSuggestion
     form_class = BookSuggestionForm
     template_name = "suggestions.html"
     context_object_name = "form"
     success_url = reverse_lazy("home_page")
 
-class BookUpdateDet(UpdateView):
+class BookUpdateDet(PermissionRequiredMixin,UpdateView):
     model = Book
     template_name = "book_update.html"
     form_class = BookFormDet
     success_url = reverse_lazy("home_page")
+    permission_required = "books.change_book"
 
 
-class BookDeleteDet(DeleteView):
+class BookDeleteDet(PermissionRequiredMixin,DeleteView):
     model = Book
     template_name = "book_confirm_delete.html"
     context_object_name = "book"
     success_url = reverse_lazy("home_page")
+    permission_required = "books.delete_book"
+
 
 
 
@@ -132,6 +136,19 @@ class BookDeleteDet(DeleteView):
 #            )
 #    return render(request, template_name="search.html", context={"books": books, "search_form":search_form})
 #
+
+# def get_queryset(self):
+#     queryset = super().get_queryset()
+#
+#     query = self.request.GET.get("query")
+#
+#     if query:
+#         queryset = queryset.filter(
+#             Q(title__icontains=query) |
+#             Q(author__icontains=query)
+#         )
+#
+#     return queryset
 
 
 

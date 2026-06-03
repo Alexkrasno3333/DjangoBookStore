@@ -62,13 +62,15 @@
                     ← Назад
                 </a>
 
-                <a href="{% url 'books:book_update' book.id %}" class="btn detail-btn-warning">
-                    ✏️ Редактировать
-                </a>
 
-                <a href="{% url 'books:book_confirm_delete' book.id %}" class="btn detail-btn-danger">
-                    🗑️ Удалить
-                </a>
+
+                {% if perms.books.change_book %}
+    <a href="{% url 'books:book_update' book.pk %}">✏️ Редактировать</a>
+{% endif %}
+
+{% if perms.books.delete_book %}
+    <a href="{% url 'books:book_confirm_delete' book.pk %}">🗑 Удалить</a>
+{% endif %}
 
                 <a href="#" class="btn detail-btn-primary">
                     Купить / заказать
