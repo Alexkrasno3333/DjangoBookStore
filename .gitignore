@@ -1,0 +1,6 @@
+.env
+db.sqlite3
+django.log
+__pycache__/
+*.pyc
+staticfiles/

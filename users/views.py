@@ -31,7 +31,6 @@ class UserRegister(CreateView):
 # def register_user(request):
 #     if request.method == "POST":
 #         form = RegisterForm(request.POST)
-#
 #         if form.is_valid():
 #             form.save()
 #             return redirect("users:login")

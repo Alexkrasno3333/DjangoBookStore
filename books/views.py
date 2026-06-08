@@ -7,6 +7,12 @@ from books.models import Book, Category, BookSuggestion
 from .forms import SearchForm, BookSuggestionForm, BookFormDet
 from django.db.models import Q
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+
+from .models import Book
+from .forms import BookFormDet
 # Create your views here.
 def main_page(request):
     return render(request, "home_page.html")
@@ -161,6 +167,32 @@ class BookDeleteDet(PermissionRequiredMixin,DeleteView):
 #     else:
 #         form = BookSuggestionForm()
 #     return render(request, template_name="suggestions.html", context={"form":form})
+
+
+
+# def book_update(request,pk):
+#    book = get_object_or_404(Book,pk = pk)
+#    if request.method == "POST":
+#        form = BookFormDet(request.POST,instance=book)
+#        if form.is_valid():
+#            form.save()
+#            return redirect("home_page")
+#    else:
+#        form = BookFormDet(instance=book)
+#    return render(request,template_name="book_update.html",context={"form":form,"book":book})
+
+# def book_delete(request,pk):
+#     book = get_object_or_404(Book,pk = pk)
+#     if request.method =="POST":
+#         book.delete()
+#         return redirect("books:home_page")
+#     else:
+#         return render(request, "book_confirm_delete.html", {
+#             "book": book,
+#         })
+
+
+
 
 
 
