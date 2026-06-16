@@ -10,7 +10,7 @@ urlpatterns = [
     path("categories/<slug:slug>/", views.BookByCategory.as_view(), name="books_by_category"),
     path("search/",views.SearchBooksView.as_view(),name="search_books"),
     path("suggestions/", views.BookSuggestionCreate.as_view(), name="suggestions"),
-    path("all-books/<int:pk>",views.BookView.as_view(),name="book_detail"),
+    path("detail-book/<int:pk>",views.BookView.as_view(),name="book_detail"),
 
     path("all-books/<int:pk>/delete",views.BookDeleteDet.as_view(),name = "book_confirm_delete"),
 

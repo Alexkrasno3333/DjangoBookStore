@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Заказ успешно оформлен!</h1>
+
+<p>Спасибо за заказ. Мы скоро с вами свяжемся.</p>
+
+<p>Книга: {{ order.book.title }}</p>
+<p>Количество: {{ order.quantity }}</p>
+<p>Цена за штуку: {{ order.book.price }}</p>
+<p>Итого: {{ order.total_quantity }}</p>
+
+<a href="{% url 'books:home_page' %}">
+    Вернуться на главную
+</a>
+</body>
+</html>

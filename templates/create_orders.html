@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+<h1>Оформление заказа</h1>
+
+<h2>{{ book.title }}</h2>
+<p>Автор: {{ book.author }}</p>
+<p>Цена: {{ book.price }}</p>
+
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+
+    <button type="submit">Подтвердить заказ</button>
+</form>
+</body>
+</html>

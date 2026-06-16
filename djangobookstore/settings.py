@@ -24,7 +24,7 @@ load_dotenv(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-local-dev-key")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
-    "debug_toolbar"
+    "debug_toolbar",
+    'orders.apps.OrdersConfig',
 
 ]
 
@@ -144,7 +145,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "books:home_page"
 LOGOUT_REDIRECT_URL = "books:home_page"

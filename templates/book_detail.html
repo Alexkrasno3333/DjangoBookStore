@@ -72,9 +72,13 @@
     <a href="{% url 'books:book_confirm_delete' book.pk %}">🗑 Удалить</a>
 {% endif %}
 
-                <a href="#" class="btn detail-btn-primary">
-                    Купить / заказать
+                <a href="{% url 'orders:create_order' book.id %}" class="btn detail-btn-primary">
+                   Заказать
                 </a>
+            <a href="{% url 'orders:cart' book.id %}" class="btn detail-btn-primary">
+    Добавить в корзину
+</a>
+
             </div>
 
         </div>

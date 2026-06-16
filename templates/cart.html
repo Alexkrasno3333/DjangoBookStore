@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Корзина</h1>
+
+{% for item in cart %}
+    <h3>{{ item.book.title }}</h3>
+    <p>Цена: {{ item.book.price }}</p>
+    <p>Количество: {{ item.quantity }}</p>
+    <p>Итого: {{ item.total_price }}</p>
+    <a href="{% url 'orders:delete_cart' item.book.id %}">
+    Удалить
+</a>
+{% endfor %}
+
+<h2>Общая сумма: {{ total }}</h2>
+
+<a href="{% url 'orders:delete_all_cart' %}">
+    Очистить корзину
+</a>
+<a href="{% url 'books:home_page' %}">
+    Вернуться на главную
+</a>
+
+</body>
+</html>

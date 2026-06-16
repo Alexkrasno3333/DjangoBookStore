@@ -27,5 +27,6 @@ urlpatterns = [
     path("", include("books.urls", namespace="books")),
 
     path("users/", include("users.urls", namespace="users")),
+    path("orders/",include("orders.urls",namespace="orders"))
 
 ] + debug_toolbar_urls()
