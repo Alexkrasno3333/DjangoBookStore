@@ -1,30 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Корзина</title>
+
+   <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("/static/images/library-bg.jpg") center/cover fixed no-repeat;
+        color: #252525;
+        min-height: 100vh;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 9, 5, 0.68);
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    .container {
+        max-width: 980px;
+        margin: 45px auto;
+        padding: 20px;
+    }
+
+    .page-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 36px;
+        color: #f4c95d;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+    }
+
+    .cart-card {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        border: 1px solid rgba(244, 201, 93, 0.25);
+    }
+
+    .book-info h3 {
+        margin: 0 0 10px;
+        font-size: 24px;
+        color: #2b130c;
+    }
+
+    .book-info p {
+        margin: 7px 0;
+        color: #3d3d3d;
+    }
+
+    .quantity {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2b130c;
+    }
+
+    .cart-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 11px 17px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-plus {
+        background: #f4c95d;
+        color: #2b130c;
+    }
+
+    .btn-minus {
+        background: transparent;
+        color: #2b130c;
+        border-color: #d9a93f;
+    }
+
+    .btn-delete {
+        background: #3a1b11;
+        color: #f4c95d;
+        border-color: #f4c95d;
+    }
+
+    .btn-clear {
+        background: transparent;
+        color: #f4c95d;
+        border-color: #f4c95d;
+    }
+
+    .btn-checkout {
+        background: #f4c95d;
+        color: #2b130c;
+        font-size: 18px;
+        padding: 14px 26px;
+    }
+
+    .btn-home {
+        background: rgba(255, 255, 255, 0.14);
+        color: #f4c95d;
+        border-color: #f4c95d;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .summary {
+        background: rgba(43, 19, 12, 0.88);
+        border-radius: 18px;
+        padding: 28px;
+        margin-top: 30px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        border: 1px solid rgba(244, 201, 93, 0.45);
+    }
+
+    .summary h2 {
+        margin-bottom: 22px;
+        font-size: 29px;
+        color: #f4c95d;
+    }
+
+    .summary-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .empty-cart {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(244, 201, 93, 0.25);
+    }
+
+    .empty-cart h2 {
+        color: #2b130c;
+    }
+
+    @media (max-width: 700px) {
+        .cart-card {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .cart-actions {
+            width: 100%;
+        }
+    }
+</style>
 </head>
 <body>
-<h1>Корзина</h1>
 
-{% for item in cart %}
-    <h3>{{ item.book.title }}</h3>
-    <p>Цена: {{ item.book.price }}</p>
-    <p>Количество: {{ item.quantity }}</p>
-    <p>Итого: {{ item.total_price }}</p>
-    <a href="{% url 'orders:delete_cart' item.book.id %}">
-    Удалить
-</a>
-{% endfor %}
+<div class="container">
+    <h1 class="page-title">🛒 Корзина</h1>
 
-<h2>Общая сумма: {{ total }}</h2>
+    {% if cart %}
+        {% for item in cart %}
+            <div class="cart-card">
+                <div class="book-info">
+                    <h3>{{ item.book.title }}</h3>
+                    <p>Цена: <strong>{{ item.book.price }}</strong> грн</p>
+                    <p>Количество: <span class="quantity">{{ item.quantity }}</span></p>
+                    <p>Итого: <strong>{{ item.total_price }}</strong> грн</p>
+                </div>
 
-<a href="{% url 'orders:delete_all_cart' %}">
-    Очистить корзину
-</a>
-<a href="{% url 'books:home_page' %}">
-    Вернуться на главную
-</a>
+                <div class="cart-actions">
+                    <a class="btn btn-plus" href="{% url 'orders:plus_cart' item.book.id %}">+</a>
+                    <a class="btn btn-minus" href="{% url 'orders:min_cart' item.book.id %}">-</a>
+                    <a class="btn btn-delete" href="{% url 'orders:delete_cart' item.book.id %}">Удалить</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="summary">
+            <h2>Общая сумма: {{ total }} грн</h2>
+
+            <div class="summary-actions">
+                <a class="btn btn-checkout" href="{% url 'orders:checkout' %}">
+                    Оформить заказ
+                </a>
+
+                <a class="btn btn-clear" href="{% url 'orders:delete_all_cart' %}">
+                    Очистить корзину
+                </a>
+
+                <a class="btn btn-home" href="{% url 'books:home_page' %}">
+                    На главную
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="empty-cart">
+            <h2>Корзина пустая</h2>
+            <p>Добавь книги, чтобы оформить заказ.</p>
+
+            <a class="btn btn-home" href="{% url 'books:home_page' %}">
+                Вернуться к книгам
+            </a>
+        </div>
+    {% endif %}
+</div>
 
 </body>
 </html>

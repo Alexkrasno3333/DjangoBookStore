@@ -1,21 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Заказ оформлен</title>
+
+  <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("/static/images/library-bg.jpg") center/cover fixed no-repeat;
+        color: #252525;
+        min-height: 100vh;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 9, 5, 0.68);
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    .container {
+        max-width: 780px;
+        margin: 65px auto;
+        padding: 20px;
+    }
+
+    .success-card {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(9px);
+        padding: 42px;
+        border-radius: 20px;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        border: 1px solid rgba(244, 201, 93, 0.3);
+    }
+
+    .icon {
+        font-size: 64px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+        font-size: 36px;
+        color: #2b130c;
+    }
+
+    p {
+        color: #4b403b;
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .order-info {
+        background: rgba(43, 19, 12, 0.9);
+        border-radius: 16px;
+        padding: 22px;
+        margin: 28px 0;
+        text-align: left;
+        border: 1px solid rgba(244, 201, 93, 0.4);
+    }
+
+    .order-info p {
+        margin: 9px 0;
+        color: #f8ead0;
+    }
+
+    .order-info strong {
+        color: #f4c95d;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 14px 24px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.2s;
+        margin: 8px;
+    }
+
+    .btn-home {
+        background: #f4c95d;
+        color: #2b130c;
+    }
+
+    .btn-cart {
+        background: #3a1b11;
+        color: #f4c95d;
+        border: 1px solid #f4c95d;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+</style>
 </head>
 <body>
-<h1>Заказ успешно оформлен!</h1>
 
-<p>Спасибо за заказ. Мы скоро с вами свяжемся.</p>
+<div class="container">
+    <div class="success-card">
+        <div class="icon">✅</div>
 
-<p>Книга: {{ order.book.title }}</p>
-<p>Количество: {{ order.quantity }}</p>
-<p>Цена за штуку: {{ order.book.price }}</p>
-<p>Итого: {{ order.total_quantity }}</p>
+        <h1>Заказ успешно оформлен!</h1>
 
-<a href="{% url 'books:home_page' %}">
-    Вернуться на главную
-</a>
+        <p>Спасибо за покупку. Ваш заказ был создан.</p>
+
+        {% if order %}
+            <div class="order-info">
+                <p><strong>Номер заказа:</strong> #{{ order.id }}</p>
+                <p><strong>Имя:</strong> {{ order.name }}</p>
+                <p><strong>Телефон:</strong> {{ order.phone }}</p>
+                <p><strong>Дата:</strong> {{ order.created_at }}</p>
+            </div>
+        {% endif %}
+
+        <a class="btn btn-home" href="{% url 'books:home_page' %}">
+            На главную
+        </a>
+
+        <a class="btn btn-cart" href="{% url 'orders:cart_detail' %}">
+            В корзину
+        </a>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,24 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Order</title>
+    <title>Оформление заказа</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url("/static/images/library-bg.jpg") center/cover fixed no-repeat;
+            color: #252525;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 9, 5, 0.68);
+            backdrop-filter: blur(3px);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .order-card {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(9px);
+            padding: 38px;
+            border-radius: 20px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(244, 201, 93, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 34px;
+            color: #2b130c;
+        }
+
+        .book-box {
+            background: rgba(43, 19, 12, 0.9);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(244, 201, 93, 0.45);
+        }
+
+        .book-box h2 {
+            margin: 0 0 12px;
+            color: #f4c95d;
+            font-size: 26px;
+        }
+
+        .book-box p {
+            margin: 8px 0;
+            color: #f8ead0;
+            font-size: 16px;
+        }
+
+        .book-box strong {
+            color: #f4c95d;
+        }
+
+        .hint {
+            text-align: center;
+            color: #4b403b;
+            margin-bottom: 25px;
+        }
+
+        form p {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2b130c;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(43, 19, 12, 0.25);
+            border-radius: 12px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d9a93f;
+            box-shadow: 0 0 0 3px rgba(244, 201, 93, 0.28);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #f4c95d;
+            color: #2b130c;
+            margin-top: 8px;
+        }
+
+        .btn-back {
+            background: #3a1b11;
+            color: #f4c95d;
+            border-color: #f4c95d;
+            margin-top: 16px;
+            text-align: center;
+            display: block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+    </style>
 </head>
 <body>
-<h1>Оформление заказа</h1>
 
-<h2>{{ book.title }}</h2>
-<p>Автор: {{ book.author }}</p>
-<p>Цена: {{ book.price }}</p>
+<div class="container">
+    <div class="order-card">
+        <h1>📦 Оформление заказа</h1>
 
+        {% if book %}
+            <div class="book-box">
+                <h2>{{ book.title }}</h2>
+                <p><strong>Автор:</strong> {{ book.author }}</p>
+                <p><strong>Цена:</strong> {{ book.price }} грн</p>
+                <p><strong>В наличии:</strong> {{ book.stock }}</p>
+            </div>
+        {% endif %}
 
-<form method="post">
-    {% csrf_token %}
+        <p class="hint">
+            Введите данные, чтобы оформить заказ на эту книгу.
+        </p>
 
-    {{ form.as_p }}
+        <form method="post">
+            {% csrf_token %}
 
+            {{ form.as_p }}
 
-    <button type="submit">Подтвердить заказ</button>
-</form>
+            <button class="btn btn-submit" type="submit">
+                Заказать книгу
+            </button>
+        </form>
+
+        {% if book %}
+            <a class="btn btn-back" href="{% url 'books:book_detail' book.id %}">
+                Назад к книге
+            </a>
+        {% else %}
+            <a class="btn btn-back" href="{% url 'books:home_page' %}">
+                На главную
+            </a>
+        {% endif %}
+    </div>
+</div>
+
 </body>
 </html>

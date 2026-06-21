@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+
+   <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("/static/images/library-bg.jpg") center/cover fixed no-repeat;
+        color: #252525;
+        min-height: 100vh;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 9, 5, 0.68);
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    .container {
+        max-width: 720px;
+        margin: 60px auto;
+        padding: 20px;
+    }
+
+    .checkout-card {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(9px);
+        padding: 38px;
+        border-radius: 20px;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(244, 201, 93, 0.3);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 18px;
+        font-size: 34px;
+        color: #2b130c;
+    }
+
+    .hint {
+        text-align: center;
+        color: #4b403b;
+        margin-bottom: 28px;
+    }
+
+    form p {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #2b130c;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid rgba(43, 19, 12, 0.25);
+        border-radius: 12px;
+        font-size: 16px;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #d9a93f;
+        box-shadow: 0 0 0 3px rgba(244, 201, 93, 0.28);
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 14px 22px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 16px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        background: #f4c95d;
+        color: #2b130c;
+        margin-top: 8px;
+    }
+
+    .btn-back {
+        background: #3a1b11;
+        color: #f4c95d;
+        border-color: #f4c95d;
+        margin-top: 16px;
+        text-align: center;
+        display: block;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="checkout-card">
+        <h1>📦 Оформление заказа</h1>
+
+        <p class="hint">
+            Введите данные, чтобы мы могли связаться с вами по заказу.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="btn btn-submit" type="submit">
+                Оформить заказ
+            </button>
+        </form>
+
+        <a class="btn btn-back" href="{% url 'orders:cart_detail' %}">
+            Назад в корзину
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

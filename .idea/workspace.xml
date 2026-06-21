@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a3e7e02-ff44-4973-86df-088815e77ee3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/orders/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/orders/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/cart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/create_orders.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/delete_success.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/order_success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders/cart.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django.log" beforeDir="false" afterPath="$PROJECT_DIR$/django.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangobookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangobookstore/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangobookstore/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangobookstore/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/book_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create_orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/delete_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/delete_success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/order_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/order_success.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +30,8 @@
       <list>
         <option value="CSS File" />
         <option value="Dockerfile" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -125,7 +124,7 @@
       <updated>1778504640697</updated>
       <workItem from="1778504641711" duration="10712000" />
       <workItem from="1778776600230" duration="124273000" />
-      <workItem from="1781524019687" duration="13953000" />
+      <workItem from="1781524019687" duration="41461000" />
     </task>
     <servers />
   </component>
