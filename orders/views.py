@@ -184,9 +184,7 @@ def create_checkout_session(request, order_id):
         line_items=line_items,
         success_url=success_url,
         cancel_url=cancel_url,
-        metadata={
-            "order_id": order.id,
-        }
+
     )
 
     return redirect(session.url, code=303)
