@@ -116,6 +116,20 @@
                 <p><strong>Имя:</strong> {{ order.name }}</p>
                 <p><strong>Телефон:</strong> {{ order.phone }}</p>
                 <p><strong>Дата:</strong> {{ order.created_at }}</p>
+
+                <hr>
+
+                <h3>Товары в заказе:</h3>
+
+                {% for item in order.items.all %}
+                    <div class="order-item">
+                        <p><strong>{{ item.book.title }}</strong></p>
+                        <p>Количество: {{ item.quantity }}</p>
+                        <p>Цена: {{ item.price }}</p>
+                        <p>Сумма: {{ item.total_quantity }}</p>
+                        <p>Итоговая сумма всего заказа будет:{{ order.total_price }}
+                    </div>
+                {% endfor %}
             </div>
         {% endif %}
 

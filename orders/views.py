@@ -6,6 +6,13 @@ from books.models import Book
 from orders.forms import OrderForm
 from orders.models import Order, OrderItem
 from .cart import Cart
+from django.db import transaction
+from django.core.mail import send_mail
+from django.conf import settings
+import stripe
+from django.urls import reverse
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -59,6 +66,7 @@ def add_cart(request,book_id):
 def plus_cart(request, book_id):
     cart = Cart(request)
     cart.plus_cart(book_id)
+    return redirect("orders:cart_detail")
 
 
 def min_cart(request, book_id):
@@ -113,10 +121,10 @@ def checkout(request):
     cart = request.session.get("cart", {})
     if not cart:
         return redirect("orders:cart_detail")
-    else:
-        if request.method == "POST":
-            form = OrderForm(request.POST)
-            if form.is_valid():
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            with transaction.atomic():
                 order = form.save(commit=False)
                 order.user = request.user
                 order.save()
@@ -124,25 +132,64 @@ def checkout(request):
                     book = get_object_or_404(Book, id=key)
                     OrderItem.objects.create(
                         order=order,
-                        book = book,
-                        quantity = value,
+                        book=book,
+                        quantity=value,
+                        price=book.price,
                     )
                 request.session["cart"] = {}
                 request.session.modified = True
-                return redirect("orders:order_success", order_id=order.id)
-        else:
-            form = OrderForm()
-        return render(request, "checkout.html", {"form": form})
+            send_mail(
+                subject=f"Заказ #{order.id} успешно оформлен",
+                message=f"Спасибо за покупку! Ваш заказ #{order.id} успешно оформлен. Сумма заказа: {order.total_price} грн.",
+                from_email=None,
+                recipient_list=[order.email],
+                fail_silently=False,
+            )
+            return redirect("orders:create_checkout_session", order_id=order.id)
+    else:
+        form = OrderForm()
+    return render(request, "checkout.html", {"form": form})
 
 
+def create_checkout_session(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
 
+    stripe.api_key = settings.STRIPE_SECRET_KEY
 
+    line_items = []
 
+    for item in order.items.all():
+        line_items.append({
+            "price_data": {
+                "currency": "uah",
+                "product_data": {
+                    "name": item.book.title,
+                },
+                "unit_amount": int(item.price * 100),
+            },
+            "quantity": item.quantity,
+        })
 
+    success_url = request.build_absolute_uri(
+        reverse("orders:order_success", kwargs={"order_id": order.id})
+    )
 
+    cancel_url = request.build_absolute_uri(
+        reverse("orders:cart_detail")
+    )
 
+    session = stripe.checkout.Session.create(
+        payment_method_types=["card"],
+        mode="payment",
+        line_items=line_items,
+        success_url=success_url,
+        cancel_url=cancel_url,
+        metadata={
+            "order_id": order.id,
+        }
+    )
 
-
+    return redirect(session.url, code=303)
 
 
 
@@ -237,7 +284,5 @@ def checkout(request):
 #     if cart:
 #        request.session["cart"] = {}
 #     return redirect("orders:cart_detail")
-
-
 
 
