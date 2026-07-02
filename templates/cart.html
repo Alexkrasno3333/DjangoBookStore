@@ -1,8 +1,10 @@
+{% load static i18n %}
+
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>Корзина</title>
+    <title>{% trans "Cart" %}</title>
 
    <style>
     body {
@@ -178,50 +180,52 @@
 <body>
 
 <div class="container">
-    <h1 class="page-title">🛒 Корзина</h1>
+    <h1 class="page-title">🛒 {% trans "Cart" %}</h1>
 
     {% if cart %}
         {% for item in cart %}
             <div class="cart-card">
                 <div class="book-info">
                     <h3>{{ item.book.title }}</h3>
-                    <p>Цена: <strong>{{ item.book.price }}</strong> грн</p>
-                    <p>Количество: <span class="quantity">{{ item.quantity }}</span></p>
-                    <p>Итого: <strong>{{ item.total_price }}</strong> грн</p>
+                    <p>{% trans "Price" %}: <strong>{{ item.book.price }}</strong> {% trans "UAH" %}</p>
+                    <p>{% trans "Quantity" %}: <span class="quantity">{{ item.quantity }}</span></p>
+                    <p>{% trans "Subtotal" %}: <strong>{{ item.total_price }}</strong> {% trans "UAH" %}</p>
                 </div>
 
                 <div class="cart-actions">
                     <a class="btn btn-plus" href="{% url 'orders:plus_cart' item.book.id %}">+</a>
                     <a class="btn btn-minus" href="{% url 'orders:min_cart' item.book.id %}">-</a>
-                    <a class="btn btn-delete" href="{% url 'orders:delete_cart' item.book.id %}">Удалить</a>
+                    <a class="btn btn-delete" href="{% url 'orders:delete_cart' item.book.id %}">
+                        {% trans "Remove" %}
+                    </a>
                 </div>
             </div>
         {% endfor %}
 
         <div class="summary">
-            <h2>Общая сумма: {{ total }} грн</h2>
+            <h2>{% trans "Total" %}: {{ total }} {% trans "UAH" %}</h2>
 
             <div class="summary-actions">
                 <a class="btn btn-checkout" href="{% url 'orders:checkout' %}">
-                    Оформить заказ
+                    {% trans "Checkout" %}
                 </a>
 
                 <a class="btn btn-clear" href="{% url 'orders:delete_all_cart' %}">
-                    Очистить корзину
+                    {% trans "Clear cart" %}
                 </a>
 
                 <a class="btn btn-home" href="{% url 'books:home_page' %}">
-                    На главную
+                    {% trans "Home page" %}
                 </a>
             </div>
         </div>
     {% else %}
         <div class="empty-cart">
-            <h2>Корзина пустая</h2>
-            <p>Добавь книги, чтобы оформить заказ.</p>
+            <h2>{% trans "Cart is empty" %}</h2>
+            <p>{% trans "Add books to place an order." %}</p>
 
             <a class="btn btn-home" href="{% url 'books:home_page' %}">
-                Вернуться к книгам
+                {% trans "Back to books" %}
             </a>
         </div>
     {% endif %}

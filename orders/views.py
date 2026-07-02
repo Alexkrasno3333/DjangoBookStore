@@ -13,6 +13,7 @@ import stripe
 from django.urls import reverse
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from .tasks import send_email
 
 # Create your views here.
 
@@ -119,7 +120,7 @@ def checkout(request):
     if not request.user.is_authenticated:
         return redirect("users:login")
     cart = request.session.get("cart", {})
-    if not cart:
+    if not cart :
         return redirect("orders:cart_detail")
     if request.method == "POST":
         form = OrderForm(request.POST)
@@ -138,13 +139,9 @@ def checkout(request):
                     )
                 request.session["cart"] = {}
                 request.session.modified = True
-            send_mail(
-                subject=f"Заказ #{order.id} успешно оформлен",
-                message=f"Спасибо за покупку! Ваш заказ #{order.id} успешно оформлен. Сумма заказа: {order.total_price} грн.",
-                from_email=None,
-                recipient_list=[order.email],
-                fail_silently=False,
-            )
+            send_email.delay(order.id)
+
+
             return redirect("orders:create_checkout_session", order_id=order.id)
     else:
         form = OrderForm()

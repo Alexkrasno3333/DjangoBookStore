@@ -1,22 +1,23 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block tittle %}Book by category{% endblock %}
+{% block title %}{% trans "Books by category" %}{% endblock %}
 
 {% block content %}
 
 <main class="container category-books-page">
 
     <a href="{% url 'books:category' %}" class="back-link">
-        ← Назад к категориям
+        ← {% trans "Back to categories" %}
     </a>
 
     <div class="category-books-title">
-        <span class="category-label">Категория</span>
+        <span class="category-label">{% trans "Category" %}</span>
 
         <h1>{{ category.name }}</h1>
 
         <p>
-            Книги из категории "{{ category.name }}"
+            {% trans "Books from category" %} "{{ category.name }}"
         </p>
     </div>
 
@@ -47,7 +48,7 @@
                         </h5>
 
                         <p class="book-author">
-                            Автор: {{ book.author }}
+                            {% trans "Author" %}: {{ book.author }}
                         </p>
 
                         <p class="book-description">
@@ -56,16 +57,16 @@
 
                         <div class="book-info">
                             <span class="book-price">
-                                {{ book.price }} грн
+                                {{ book.price }} {% trans "UAH" %}
                             </span>
 
                             <span class="book-stock">
-                                В наличии: {{ book.stock }}
+                                {% trans "In stock" %}: {{ book.stock }}
                             </span>
                         </div>
 
                         <a href="{% url 'books:book_detail' book.id %}" class="btn book-btn mt-3">
-                            Подробнее
+                            {% trans "Details" %}
                         </a>
                     </div>
 
@@ -74,7 +75,7 @@
         {% empty %}
             <div class="col-12">
                 <div class="empty-books">
-                    В этой категории пока нет книг.
+                    {% trans "There are no books in this category yet." %}
                 </div>
             </div>
         {% endfor %}

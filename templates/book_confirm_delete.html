@@ -1,64 +1,64 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block tittle  %}Delete book {% endblock %}
+{% block title %}{% trans "Delete book" %}{% endblock %}
 
 {% block content %}
     <main class="container delete-book-page">
 
-    <div class="delete-book-card">
+        <div class="delete-book-card">
 
-        <div class="delete-book-icon">
-            🗑️
+            <div class="delete-book-icon">
+                🗑️
+            </div>
+
+            <span class="delete-book-label">
+                {% trans "Delete confirmation" %}
+            </span>
+
+            <h1>{% trans "Delete book?" %}</h1>
+
+            <p class="delete-book-text">
+                {% trans "Are you sure you want to delete the book" %}
+                <strong>“{{ book.title }}”</strong>?
+            </p>
+
+            <p class="delete-book-warning">
+                {% trans "This action cannot be undone. The book will disappear from the catalog." %}
+            </p>
+
+            <div class="delete-book-info">
+                <div>
+                    <span>{% trans "Author" %}</span>
+                    <strong>{{ book.author }}</strong>
+                </div>
+
+                <div>
+                    <span>{% trans "Price" %}</span>
+                    <strong>{{ book.price }} {% trans "UAH" %}</strong>
+                </div>
+
+                <div>
+                    <span>{% trans "In stock" %}</span>
+                    <strong>{{ book.stock }}</strong>
+                </div>
+            </div>
+
+            <form method="post" class="delete-book-actions">
+                {% csrf_token %}
+
+                <button type="submit" class="btn delete-confirm-btn">
+                    {% trans "Yes, delete" %}
+                </button>
+
+                <a href="{% url 'books:book_detail' book.id %}" class="btn delete-cancel-btn">
+                    {% trans "Cancel" %}
+                </a>
+            </form>
+
         </div>
 
-        <span class="delete-book-label">
-            Подтверждение удаления
-        </span>
-
-        <h1>Удалить книгу?</h1>
-
-        <p class="delete-book-text">
-            Ты точно хочешь удалить книгу
-            <strong>“{{ book.title }}”</strong>?
-        </p>
-
-        <p class="delete-book-warning">
-            Это действие нельзя будет отменить. Книга исчезнет из каталога.
-        </p>
-
-        <div class="delete-book-info">
-            <div>
-                <span>Автор</span>
-                <strong>{{ book.author }}</strong>
-            </div>
-
-            <div>
-                <span>Цена</span>
-                <strong>{{ book.price }} грн</strong>
-            </div>
-
-            <div>
-                <span>В наличии</span>
-                <strong>{{ book.stock }}</strong>
-            </div>
-        </div>
-
-        <form method="post" class="delete-book-actions">
-            {% csrf_token %}
-
-            <button type="submit" class="btn delete-confirm-btn">
-                Да, удалить
-            </button>
-
-            <a href="{% url 'books:book_detail' book.id %}" class="btn delete-cancel-btn">
-                Отмена
-            </a>
-        </form>
-
-    </div>
-
-</main>
-
+    </main>
 {% endblock %}
 
 

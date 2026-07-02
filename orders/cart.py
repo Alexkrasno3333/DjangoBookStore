@@ -19,6 +19,7 @@ class Cart:
     def save(self):
         self.session.modified = True
 
+
     def add_cart(self, book_id):
         book_str = str(book_id)
 

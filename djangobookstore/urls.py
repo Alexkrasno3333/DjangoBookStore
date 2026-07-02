@@ -21,12 +21,21 @@ from django.urls import path
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
+]
+
+
+urlpatterns += i18n_patterns(
+    path("admin/", admin.site.urls),
     path("", include("books.urls", namespace="books")),
-
     path("users/", include("users.urls", namespace="users")),
-    path("orders/",include("orders.urls",namespace="orders"))
+    path("orders/", include("orders.urls", namespace="orders")),
+)
 
-] + debug_toolbar_urls()
+
+urlpatterns += debug_toolbar_urls()

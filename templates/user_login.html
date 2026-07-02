@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Login" %}{% endblock %}
 
 {% block content %}
 
@@ -134,8 +137,8 @@
     <div class="auth-card">
         <div class="auth-header">
             <div class="auth-icon">📚</div>
-            <h1>Войти</h1>
-            <p>Войдите в аккаунт, чтобы продолжить</p>
+            <h1>{% trans "Login" %}</h1>
+            <p>{% trans "Log in to your account to continue" %}</p>
         </div>
 
         <form method="post" class="auth-form">
@@ -148,21 +151,21 @@
             {% endif %}
 
             <div class="auth-field">
-                <label for="{{ form.username.id_for_label }}">Логин</label>
+                <label for="{{ form.username.id_for_label }}">{% trans "Username" %}</label>
                 {{ form.username }}
             </div>
 
             <div class="auth-field">
-                <label for="{{ form.password.id_for_label }}">Пароль</label>
+                <label for="{{ form.password.id_for_label }}">{% trans "Password" %}</label>
                 {{ form.password }}
             </div>
 
-            <button type="submit" class="auth-btn">Войти</button>
+            <button type="submit" class="auth-btn">{% trans "Login" %}</button>
         </form>
 
         <div class="auth-footer">
-            Нет аккаунта?
-            <a href="{% url 'users:register' %}">Зарегистрироваться</a>
+            {% trans "No account?" %}
+            <a href="{% url 'users:register' %}">{% trans "Register" %}</a>
         </div>
     </div>
 </div>

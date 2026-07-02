@@ -1,0 +1,539 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 12:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: books/models.py:7 orders/models.py:19 templates/order_success.html:118
+msgid "Name"
+msgstr "Name"
+
+#: books/models.py:8
+msgid "Slug"
+msgstr "Slug"
+
+#: books/models.py:10 books/models.py:19 templates/book_detail.html:56
+#: templates/books_by_category.html:15
+msgid "Category"
+msgstr "Category"
+
+#: books/models.py:11 templates/base.html:56 templates/category.html:4
+msgid "Categories"
+msgstr "Categories"
+
+#: books/models.py:21
+msgid "Title"
+msgstr "Title"
+
+#: books/models.py:22 templates/all_books.html:32
+#: templates/book_confirm_delete.html:32 templates/book_detail.html:33
+#: templates/books_by_category.html:51 templates/create_orders.html:149
+#: templates/search.html:47
+msgid "Author"
+msgstr "Author"
+
+#: books/models.py:23 orders/models.py:49 templates/book_confirm_delete.html:37
+#: templates/cart.html:190 templates/create_orders.html:150
+#: templates/order_success.html:130
+msgid "Price"
+msgstr "Price"
+
+#: books/models.py:24 templates/book_detail.html:50
+msgid "Description"
+msgstr "Description"
+
+#: books/models.py:25
+msgid "Stock"
+msgstr "Stock"
+
+#: books/models.py:28 orders/models.py:47
+msgid "Book"
+msgstr "Book"
+
+#: books/models.py:29
+msgid "Books"
+msgstr "Books"
+
+#: djangobookstore/settings.py:213
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+#: djangobookstore/settings.py:214
+msgid "English"
+msgstr "English"
+
+#: orders/models.py:17
+msgid "User"
+msgstr "User"
+
+#: orders/models.py:20 templates/order_success.html:119
+msgid "Phone"
+msgstr "Phone"
+
+#: orders/models.py:21
+msgid "Email"
+msgstr "Email"
+
+#: orders/models.py:22
+msgid "Is paid"
+msgstr "Is paid"
+
+#: orders/models.py:23
+msgid "Created at"
+msgstr "Created at"
+
+#: orders/models.py:25
+msgid "Stripe checkout session ID"
+msgstr "Stripe checkout session ID"
+
+#: orders/models.py:32 orders/models.py:41 orders/models.py:46
+#: templates/book_detail.html:79
+msgid "Order"
+msgstr "Order"
+
+#: orders/models.py:42
+msgid "Orders"
+msgstr "Orders"
+
+#: orders/models.py:48 templates/cart.html:191 templates/order_success.html:129
+msgid "Quantity"
+msgstr "Quantity"
+
+#: orders/models.py:58
+#, fuzzy
+#| msgid "Order"
+msgid "Order item"
+msgstr "Order"
+
+#: orders/models.py:59
+#, fuzzy
+#| msgid "Orders"
+msgid "Order items"
+msgstr "Orders"
+
+#: templates/all_books.html:4 templates/all_books.html:11
+#: templates/base.html:50
+msgid "All books"
+msgstr "All books"
+
+#: templates/all_books.html:12
+#, fuzzy
+#| msgid "There are no books for query"
+msgid "Here are the books from your store."
+msgstr "There are no books for query"
+
+#: templates/all_books.html:41 templates/book_confirm_delete.html:38
+#: templates/book_detail.html:39 templates/books_by_category.html:60
+#: templates/cart.html:190 templates/cart.html:192 templates/cart.html:206
+#: templates/create_orders.html:150 templates/search.html:58
+msgid "UAH"
+msgstr "UAH"
+
+#: templates/all_books.html:45 templates/book_confirm_delete.html:42
+#: templates/book_detail.html:43 templates/books_by_category.html:64
+#: templates/create_orders.html:151 templates/search.html:62
+msgid "In stock"
+msgstr "In stock"
+
+#: templates/all_books.html:50 templates/books_by_category.html:69
+#: templates/search.html:67
+msgid "Details"
+msgstr "Details"
+
+#: templates/all_books.html:59
+#, fuzzy
+#| msgid "There are no books for query"
+msgid "There are no books yet."
+msgstr "There are no books for query"
+
+#: templates/all_books.html:71 templates/book_detail.html:63
+msgid "Back"
+msgstr "Back"
+
+#: templates/all_books.html:76
+msgid "Page"
+msgstr ""
+
+#: templates/all_books.html:76
+msgid "of"
+msgstr ""
+
+#: templates/all_books.html:82
+msgid "Next"
+msgstr ""
+
+#: templates/base.html:11 templates/base.html:29
+msgid "Book store"
+msgstr "Book store"
+
+#: templates/base.html:40
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/base.html:62 templates/suggestions.html:4
+#: templates/suggestions.html:14
+msgid "Suggest a book"
+msgstr "Suggest a book"
+
+#: templates/base.html:68 templates/cart.html:7 templates/cart.html:183
+#: templates/order_success.html:143
+msgid "Cart"
+msgstr "Cart"
+
+#: templates/base.html:83
+msgid "Find a book..."
+msgstr "Find a book..."
+
+#: templates/base.html:84 templates/base.html:88 templates/search.html:10
+#: templates/search.html:25
+msgid "Search"
+msgstr "Search"
+
+#: templates/base.html:102
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/base.html:107 templates/user_login.html:4
+#: templates/user_login.html:140 templates/user_login.html:163
+msgid "Login"
+msgstr "Login"
+
+#: templates/book_confirm_delete.html:4
+#, fuzzy
+#| msgid "All books"
+msgid "Delete book"
+msgstr "Delete book"
+
+#: templates/book_confirm_delete.html:16
+msgid "Delete confirmation"
+msgstr "Delete confirmation"
+
+#: templates/book_confirm_delete.html:19
+msgid "Delete book?"
+msgstr "Delete book?"
+
+#: templates/book_confirm_delete.html:22
+msgid "Are you sure you want to delete the book"
+msgstr "Are you sure you want to delete the book"
+
+#: templates/book_confirm_delete.html:27
+msgid "This action cannot be undone. The book will disappear from the catalog."
+msgstr ""
+"This action cannot be undone. The book will disappear from the catalog."
+
+#: templates/book_confirm_delete.html:51
+msgid "Yes, delete"
+msgstr "Yes, delete"
+
+#: templates/book_confirm_delete.html:55 templates/book_update.html:70
+#: templates/book_update.html:74
+msgid "Cancel"
+msgstr "Cancel"
+
+#: templates/book_detail.html:4
+msgid "Book detail"
+msgstr "Book detail"
+
+#: templates/book_detail.html:10
+msgid "Back to all books"
+msgstr "Back to all books"
+
+#: templates/book_detail.html:21
+msgid "Store book"
+msgstr "Store book"
+
+#: templates/book_detail.html:28
+msgid "Detailed information"
+msgstr "Detailed information"
+
+#: templates/book_detail.html:68
+msgid "Edit"
+msgstr "Edit"
+
+#: templates/book_detail.html:74
+msgid "Delete"
+msgstr "Delete"
+
+#: templates/book_detail.html:83
+msgid "Add to cart"
+msgstr "Add to cart"
+
+#: templates/book_update.html:4
+#, fuzzy
+#| msgid "Book store"
+msgid "Book update"
+msgstr "Book update"
+
+#: templates/book_update.html:12
+msgid "Editing"
+msgstr "Editing"
+
+#: templates/book_update.html:14
+msgid "Update book"
+msgstr "Update book"
+
+#: templates/book_update.html:17
+msgid ""
+"Here you can update the book data: title, author, price, stock quantity and "
+"description."
+msgstr ""
+"Here you can update the book data: title, author, price, stock quantity and "
+"description."
+
+#: templates/book_update.html:23
+msgid ""
+"After saving, the changes will be saved to the database and will be visible "
+"on the all books page."
+msgstr ""
+"After saving, the changes will be saved to the database and will be visible "
+"on the all books page."
+
+#: templates/book_update.html:33
+msgid "Book form"
+msgstr "Book form"
+
+#: templates/book_update.html:34
+msgid "Edit the required fields and click Save."
+msgstr "Edit the required fields and click Save."
+
+#: templates/book_update.html:65
+msgid "Save changes"
+msgstr "Save changes"
+
+#: templates/books_by_category.html:4
+msgid "Books by category"
+msgstr "Books by category"
+
+#: templates/books_by_category.html:11
+msgid "Back to categories"
+msgstr "Back to categories"
+
+#: templates/books_by_category.html:20
+msgid "Books from category"
+msgstr "Books from category"
+
+#: templates/books_by_category.html:78
+msgid "There are no books in this category yet."
+msgstr "There are no books in this category yet."
+
+#: templates/cart.html:192 templates/order_success.html:131
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: templates/cart.html:199
+msgid "Remove"
+msgstr "Remove"
+
+#: templates/cart.html:206
+msgid "Total"
+msgstr "Total"
+
+#: templates/cart.html:210 templates/checkout.html:7
+#: templates/checkout.html:120 templates/create_orders.html:7
+#: templates/create_orders.html:144
+msgid "Checkout"
+msgstr "Checkout"
+
+#: templates/cart.html:214
+msgid "Clear cart"
+msgstr "Clear cart"
+
+#: templates/cart.html:218 templates/create_orders.html:175
+#: templates/order_success.html:139
+msgid "Home page"
+msgstr "Home page"
+
+#: templates/cart.html:224
+msgid "Cart is empty"
+msgstr "Cart is empty"
+
+#: templates/cart.html:225
+msgid "Add books to place an order."
+msgstr "Add books to place an order."
+
+#: templates/cart.html:228 templates/suggestions.html:72
+msgid "Back to books"
+msgstr "Back to books"
+
+#: templates/category.html:10
+#, fuzzy
+#| msgid "Back to categories"
+msgid "Book categories"
+msgstr "Book categories"
+
+#: templates/category.html:11
+msgid "Choose a category and view the books that belong to it."
+msgstr "Choose a category and view the books that belong to it."
+
+#: templates/category.html:36
+msgid "Books in category"
+msgstr "Books in category"
+
+#: templates/category.html:41
+msgid "View books"
+msgstr "View books"
+
+#: templates/category.html:49
+msgid "There are no categories yet."
+msgstr "There are no categories yet."
+
+#: templates/checkout.html:123
+msgid "Enter your details so we can contact you about your order."
+msgstr "Enter your details so we can contact you about your order."
+
+#: templates/checkout.html:132
+msgid "Place order"
+msgstr "Place order"
+
+#: templates/checkout.html:137
+msgid "Back to cart"
+msgstr "Back to cart"
+
+#: templates/create_orders.html:156
+#, fuzzy
+#| msgid "Enter your details so we can contact you about your order."
+msgid "Enter your details to place an order for this book."
+msgstr "Enter your details to place an order for this book."
+
+#: templates/create_orders.html:165
+msgid "Order book"
+msgstr "Order book"
+
+#: templates/create_orders.html:171
+msgid "Back to book"
+msgstr "Back to book"
+
+#: templates/order_success.html:7
+#, fuzzy
+#| msgid "Order"
+msgid "Order completed"
+msgstr "Order completed"
+
+#: templates/order_success.html:111
+msgid "Order successfully completed!"
+msgstr "Order successfully completed!"
+
+#: templates/order_success.html:113
+msgid "Thank you for your purchase. Your order has been created."
+msgstr "Thank you for your purchase. Your order has been created."
+
+#: templates/order_success.html:117
+msgid "Order number"
+msgstr "Order number"
+
+#: templates/order_success.html:120
+msgid "Date"
+msgstr "Date"
+
+#: templates/order_success.html:124
+msgid "Items in order"
+msgstr "Items in order"
+
+#: templates/order_success.html:132
+msgid "Total order amount"
+msgstr "Total order amount"
+
+#: templates/search.html:4 templates/search.html:15
+#, fuzzy
+#| msgid "Search"
+msgid "Search books"
+msgstr "Search books"
+
+#: templates/search.html:13
+msgid "Results for query"
+msgstr "Results for query"
+
+#: templates/search.html:18
+msgid "Search books by title or author."
+msgstr "Search books by title or author."
+
+#: templates/search.html:79
+msgid "Nothing found"
+msgstr "Nothing found"
+
+#: templates/search.html:80
+msgid "There are no books for query"
+msgstr "There are no books for query"
+
+#: templates/search.html:82
+msgid "Enter a query"
+msgstr "Enter a query"
+
+#: templates/search.html:83
+msgid "Enter a book title or author in the search field."
+msgstr "Enter a book title or author in the search field."
+
+#: templates/search.html:87
+msgid "View all books"
+msgstr "View all books"
+
+#: templates/suggestions.html:12
+msgid "Request"
+msgstr "Request"
+
+#: templates/suggestions.html:17
+msgid ""
+"If you want to see a book in our store, fill out the form. The administrator "
+"will review the suggestion and can add the book to the catalog."
+msgstr ""
+"If you want to see a book in our store, fill out the form. The administrator "
+"will review the suggestion and can add the book to the catalog."
+
+#: templates/suggestions.html:23
+msgid "Fill in the book details"
+msgstr "Fill in the book details"
+
+#: templates/suggestions.html:28
+msgid "Send the suggestion"
+msgstr "Send the suggestion"
+
+#: templates/suggestions.html:33
+msgid "The admin will review the request"
+msgstr "The admin will review the request"
+
+#: templates/suggestions.html:42
+msgid "Suggestion form"
+msgstr "Suggestion form"
+
+#: templates/suggestions.html:43
+msgid "Tell us which book should be added."
+msgstr "Tell us which book should be added."
+
+#: templates/suggestions.html:68
+msgid "Send suggestion"
+msgstr "Send suggestion"
+
+#: templates/user_login.html:141
+msgid "Log in to your account to continue"
+msgstr "Log in to your account to continue"
+
+#: templates/user_login.html:154
+msgid "Username"
+msgstr "Username"
+
+#: templates/user_login.html:159
+msgid "Password"
+msgstr "Password"
+
+#: templates/user_login.html:167
+msgid "No account?"
+msgstr "No account?"
+
+#: templates/user_login.html:168
+msgid "Register"
+msgstr "Register"
+

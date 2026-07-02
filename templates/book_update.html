@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block tittle %}Book update {% endblock %}
+{% block title %}{% trans "Book update" %}{% endblock %}
 
 {% block content %}
 <main class="container update-book-page">
@@ -8,20 +9,18 @@
     <div class="update-book-wrapper">
 
         <div class="update-book-info">
-            <span class="update-book-label">Редактирование</span>
+            <span class="update-book-label">{% trans "Editing" %}</span>
 
-            <h1>Изменить книгу</h1>
+            <h1>{% trans "Update book" %}</h1>
 
             <p>
-                Здесь можно обновить данные книги: название, автора, цену,
-                количество на складе и описание.
+                {% trans "Here you can update the book data: title, author, price, stock quantity and description." %}
             </p>
 
             <div class="update-book-hint">
                 <div class="hint-icon">💡</div>
                 <p>
-                    После сохранения изменения попадут в базу данных и будут видны
-                    на странице всех книг.
+                    {% trans "After saving, the changes will be saved to the database and will be visible on the all books page." %}
                 </p>
             </div>
         </div>
@@ -31,8 +30,8 @@
                 <div class="update-book-icon">✏️</div>
 
                 <div>
-                    <h2>Форма книги</h2>
-                    <p>Отредактируй нужные поля и нажми “Сохранить”.</p>
+                    <h2>{% trans "Book form" %}</h2>
+                    <p>{% trans "Edit the required fields and click Save." %}</p>
                 </div>
             </div>
 
@@ -63,16 +62,16 @@
 
                 <div class="update-book-actions">
                     <button type="submit" class="btn update-book-submit-btn">
-                        💾 Сохранить изменения
+                        💾 {% trans "Save changes" %}
                     </button>
 
                     {% if object %}
                         <a href="{% url 'books:book_detail' object.id %}" class="btn update-book-cancel-btn">
-                            Отмена
+                            {% trans "Cancel" %}
                         </a>
                     {% else %}
                         <a href="{% url 'books:all_books' %}" class="btn update-book-cancel-btn">
-                            Отмена
+                            {% trans "Cancel" %}
                         </a>
                     {% endif %}
                 </div>
@@ -82,8 +81,6 @@
     </div>
 
 </main>
-
 {% endblock %}
-
 
 

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block tittle %}Category {% endblock %}
+{% block title %}{% trans "Categories" %}{% endblock %}
+
 {% block content %}
 <main class="container categories-page">
 
     <div class="categories-title">
-        <h1>Категории книг</h1>
-        <p>Выбери категорию и посмотри книги, которые к ней относятся.</p>
+        <h1>{% trans "Book categories" %}</h1>
+        <p>{% trans "Choose a category and view the books that belong to it." %}</p>
     </div>
 
     <div class="row">
@@ -31,12 +33,12 @@
                     <h3>{{ category.name }}</h3>
 
                     <p>
-                        Книг в категории:
+                        {% trans "Books in category" %}:
                         <strong>{{ category.num_books }}</strong>
                     </p>
 
                     <span class="category-btn">
-                        Смотреть книги
+                        {% trans "View books" %}
                     </span>
 
                 </a>
@@ -44,12 +46,11 @@
         {% empty %}
             <div class="col-12">
                 <div class="empty-books">
-                    Категорий пока нет.
+                    {% trans "There are no categories yet." %}
                 </div>
             </div>
         {% endfor %}
     </div>
 
 </main>
-
 {% endblock %}

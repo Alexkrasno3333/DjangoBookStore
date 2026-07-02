@@ -1,8 +1,10 @@
+{% load static i18n %}
+
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>Оформление заказа</title>
+    <title>{% trans "Checkout" %}</title>
 
    <style>
     body {
@@ -115,10 +117,10 @@
 
 <div class="container">
     <div class="checkout-card">
-        <h1>📦 Оформление заказа</h1>
+        <h1>📦 {% trans "Checkout" %}</h1>
 
         <p class="hint">
-            Введите данные, чтобы мы могли связаться с вами по заказу.
+            {% trans "Enter your details so we can contact you about your order." %}
         </p>
 
         <form method="post">
@@ -127,12 +129,12 @@
             {{ form.as_p }}
 
             <button class="btn btn-submit" type="submit">
-                Оформить заказ
+                {% trans "Place order" %}
             </button>
         </form>
 
         <a class="btn btn-back" href="{% url 'orders:cart_detail' %}">
-            Назад в корзину
+            {% trans "Back to cart" %}
         </a>
     </div>
 </div>

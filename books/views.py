@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import Count
+
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
+import books
 from books.models import Book, Category, BookSuggestion
 from .forms import SearchForm, BookSuggestionForm, BookFormDet
 from django.db.models import Q
@@ -13,6 +14,11 @@ from django.urls import reverse
 
 from .models import Book
 from .forms import BookFormDet
+from django.shortcuts import render
+from django.http import Http404, JsonResponse
+from django.core.paginator import Paginator
+from django.db.models import Count
+from asgiref.sync import sync_to_async
 # Create your views here.
 def main_page(request):
     return render(request, "home_page.html")
@@ -36,7 +42,7 @@ class CategoryListAnn(ListView):
     context_object_name = "categories"
 
     def get_queryset(self):
-        return Category.objects.annotate(num_books=Count("book"))
+        return Category.objects.annotate(num_books=Count("books"))
 
 
 
@@ -103,7 +109,30 @@ class BookDeleteDet(PermissionRequiredMixin,DeleteView):
     permission_required = "books.delete_book"
 
 
+async def all_books(request):
+    books = [book async for book in Book.objects.all()]
+    paginator = Paginator(books, 3)
 
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return await sync_to_async(render)(request, template_name="all_books.html",context={"books":page_obj.object_list, "page_obj": page_obj,
+        "is_paginated": page_obj.has_other_pages(),})
+
+async def category(request):
+    categories = [category async for category in Category.objects.annotate(num_books=Count("books"))]
+    return await sync_to_async(render)(request, template_name="category.html",context={"categories":categories})
+
+
+
+async def books_by_category(request,slug):
+  category = await sync_to_async(get_object_or_404)(Category, slug=slug)
+  result =[ book async for book in Book.objects.filter(category=category)]
+  context = {
+      "category": category,
+      "result": result
+  }
+  return await sync_to_async(render)(request, template_name="books_by_category.html",context=context)
 
 
 
@@ -114,6 +143,7 @@ class BookDeleteDet(PermissionRequiredMixin,DeleteView):
 # def all_books(request):
 #     books = Book.objects.all()
 #     return render(request,template_name="all_books.html",context={"books":books})
+
 
 
 # def category(request):

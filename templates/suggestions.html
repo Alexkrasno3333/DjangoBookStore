@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block tittle %} Suggestions Block{% endblock %}
+{% block title %}{% trans "Suggest a book" %}{% endblock %}
 
 {% block content %}
 <main class="container suggestion-page">
@@ -8,29 +9,28 @@
     <div class="suggestion-wrapper">
 
         <div class="suggestion-info">
-            <span class="suggestion-label">Заявка</span>
+            <span class="suggestion-label">{% trans "Request" %}</span>
 
-            <h1>Предложить книгу</h1>
+            <h1>{% trans "Suggest a book" %}</h1>
 
             <p>
-                Если ты хочешь увидеть какую-то книгу в нашем магазине,
-                заполни форму. Администратор посмотрит предложение и сможет добавить книгу в каталог.
+                {% trans "If you want to see a book in our store, fill out the form. The administrator will review the suggestion and can add the book to the catalog." %}
             </p>
 
             <div class="suggestion-steps">
                 <div class="suggestion-step">
                     <span>1</span>
-                    <p>Заполни данные о книге</p>
+                    <p>{% trans "Fill in the book details" %}</p>
                 </div>
 
                 <div class="suggestion-step">
                     <span>2</span>
-                    <p>Отправь предложение</p>
+                    <p>{% trans "Send the suggestion" %}</p>
                 </div>
 
                 <div class="suggestion-step">
                     <span>3</span>
-                    <p>Админ проверит заявку</p>
+                    <p>{% trans "The admin will review the request" %}</p>
                 </div>
             </div>
         </div>
@@ -39,8 +39,8 @@
             <div class="suggestion-card-header">
                 <div class="suggestion-icon">✍️</div>
                 <div>
-                    <h2>Форма предложения</h2>
-                    <p>Расскажи, какую книгу стоит добавить.</p>
+                    <h2>{% trans "Suggestion form" %}</h2>
+                    <p>{% trans "Tell us which book should be added." %}</p>
                 </div>
             </div>
 
@@ -65,11 +65,11 @@
 
                 <div class="suggestion-actions">
                     <button type="submit" class="btn suggestion-submit-btn">
-                        Отправить предложение
+                        {% trans "Send suggestion" %}
                     </button>
 
                     <a href="{% url 'books:all_books' %}" class="btn suggestion-cancel-btn">
-                        Назад к книгам
+                        {% trans "Back to books" %}
                     </a>
                 </div>
             </form>
@@ -78,5 +78,4 @@
     </div>
 
 </main>
-
 {% endblock %}

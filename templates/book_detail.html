@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block tittle %}Book detail{% endblock %}
+{% block title %}{% trans "Book detail" %}{% endblock %}
 
 {% block content %}
 <main class="container book-detail-page">
 
     <a href="{% url 'books:all_books' %}" class="back-link">
-        ← Вернуться ко всем книгам
+        ← {% trans "Back to all books" %}
     </a>
 
     <section class="book-detail-card">
@@ -17,68 +18,70 @@
             </div>
 
             <span class="book-detail-badge">
-                Книга магазина
+                {% trans "Store book" %}
             </span>
         </div>
 
         <div class="book-detail-content">
 
             <div class="book-detail-top">
-                <span class="book-detail-label">Подробная информация</span>
+                <span class="book-detail-label">{% trans "Detailed information" %}</span>
                 <h1>{{ book.title }}</h1>
             </div>
 
             <p class="book-detail-author">
-                Автор:
+                {% trans "Author" %}:
                 <strong>{{ book.author }}</strong>
             </p>
 
             <div class="book-detail-meta">
                 <span class="detail-price">
-                    {{ book.price }} грн
+                    {{ book.price }} {% trans "UAH" %}
                 </span>
 
                 <span class="detail-stock">
-                    В наличии: {{ book.stock }}
+                    {% trans "In stock" %}: {{ book.stock }}
                 </span>
             </div>
 
             <hr class="book-detail-line">
 
             <div class="book-detail-description">
-                <h4>Описание</h4>
+                <h4>{% trans "Description" %}</h4>
                 <p>{{ book.description }}</p>
             </div>
 
             {% if book.category %}
                 <div class="book-detail-category">
-                    <strong>Категория:</strong>
+                    <strong>{% trans "Category" %}:</strong>
                     <span>{{ book.category.name }}</span>
                 </div>
             {% endif %}
 
             <div class="book-detail-actions">
                 <a href="{% url 'books:all_books' %}" class="btn detail-btn-secondary">
-                    ← Назад
+                    ← {% trans "Back" %}
                 </a>
-
-
 
                 {% if perms.books.change_book %}
-    <a href="{% url 'books:book_update' book.pk %}">✏️ Редактировать</a>
-{% endif %}
+                    <a href="{% url 'books:book_update' book.pk %}">
+                        ✏️ {% trans "Edit" %}
+                    </a>
+                {% endif %}
 
-{% if perms.books.delete_book %}
-    <a href="{% url 'books:book_confirm_delete' book.pk %}">🗑 Удалить</a>
-{% endif %}
+                {% if perms.books.delete_book %}
+                    <a href="{% url 'books:book_confirm_delete' book.pk %}">
+                        🗑 {% trans "Delete" %}
+                    </a>
+                {% endif %}
 
                 <a href="{% url 'orders:create_order' book.id %}" class="btn detail-btn-primary">
-                   Заказать
+                    {% trans "Order" %}
                 </a>
-            <a href="{% url 'orders:add_cart' book.id %}" class="btn detail-btn-primary">
-    Добавить в корзину
-</a>
 
+                <a href="{% url 'orders:add_cart' book.id %}" class="btn detail-btn-primary">
+                    {% trans "Add to cart" %}
+                </a>
             </div>
 
         </div>
@@ -87,12 +90,3 @@
 
 </main>
 {% endblock %}
-
-
-
-
-
-
-
-
-

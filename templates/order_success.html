@@ -1,8 +1,10 @@
+{% load static i18n %}
+
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>Заказ оформлен</title>
+    <title>{% trans "Order completed" %}</title>
 
   <style>
     body {
@@ -106,39 +108,39 @@
     <div class="success-card">
         <div class="icon">✅</div>
 
-        <h1>Заказ успешно оформлен!</h1>
+        <h1>{% trans "Order successfully completed!" %}</h1>
 
-        <p>Спасибо за покупку. Ваш заказ был создан.</p>
+        <p>{% trans "Thank you for your purchase. Your order has been created." %}</p>
 
         {% if order %}
             <div class="order-info">
-                <p><strong>Номер заказа:</strong> #{{ order.id }}</p>
-                <p><strong>Имя:</strong> {{ order.name }}</p>
-                <p><strong>Телефон:</strong> {{ order.phone }}</p>
-                <p><strong>Дата:</strong> {{ order.created_at }}</p>
+                <p><strong>{% trans "Order number" %}:</strong> #{{ order.id }}</p>
+                <p><strong>{% trans "Name" %}:</strong> {{ order.name }}</p>
+                <p><strong>{% trans "Phone" %}:</strong> {{ order.phone }}</p>
+                <p><strong>{% trans "Date" %}:</strong> {{ order.created_at }}</p>
 
                 <hr>
 
-                <h3>Товары в заказе:</h3>
+                <h3>{% trans "Items in order" %}:</h3>
 
                 {% for item in order.items.all %}
                     <div class="order-item">
                         <p><strong>{{ item.book.title }}</strong></p>
-                        <p>Количество: {{ item.quantity }}</p>
-                        <p>Цена: {{ item.price }}</p>
-                        <p>Сумма: {{ item.total_quantity }}</p>
-                        <p>Итоговая сумма всего заказа будет:{{ order.total_price }}
+                        <p>{% trans "Quantity" %}: {{ item.quantity }}</p>
+                        <p>{% trans "Price" %}: {{ item.price }}</p>
+                        <p>{% trans "Subtotal" %}: {{ item.total_quantity }}</p>
+                        <p>{% trans "Total order amount" %}: {{ order.total_price }}</p>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
 
         <a class="btn btn-home" href="{% url 'books:home_page' %}">
-            На главную
+            {% trans "Home page" %}
         </a>
 
         <a class="btn btn-cart" href="{% url 'orders:cart_detail' %}">
-            В корзину
+            {% trans "Cart" %}
         </a>
     </div>
 </div>
